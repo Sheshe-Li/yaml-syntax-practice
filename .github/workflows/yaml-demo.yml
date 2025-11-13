@@ -66,11 +66,10 @@ jobs:
   deploy:
     # Job dependency
     needs: build
-    # Conditional execution
-    if: env.DEPLOY_ENABLED == 'true'
+    # Conditional execution - FIXED: use vars context for env vars in expressions
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
 
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Application
         run: echo "Deploying application..."
-  
